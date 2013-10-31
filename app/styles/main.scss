@@ -1,0 +1,15 @@
+// your app variables (e.g. foundation overrides, etc) here
+
+@import "font-awesome/scss/font-awesome";
+@import "foundation";
+@import "compass";
+
+.compass-hover {
+  @include transition-property(background);
+  @include transition-duration(0.5s);
+  @include transition-timing-function(ease-in);
+
+  &:hover {
+     background: #61c63e;
+  }
+}
