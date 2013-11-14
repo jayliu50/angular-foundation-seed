@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kinpointApp')
+angular.module('myApp')
     .controller('MainCtrl', function ($scope) {
         $scope.awesomeThings = [
             'jQuery',
