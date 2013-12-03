@@ -10,4 +10,8 @@ angular.module('myApp')
             'AngularJS',
             'Karma'
         ];
+
+        $scope.$on('$viewContentLoaded', function () {
+            $(document).foundation();
+        });
     });

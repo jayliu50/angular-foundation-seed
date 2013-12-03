@@ -323,6 +323,9 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
+	  options: {
+        mangle: false // Do not set to true. Does not work well with angular http://stackoverflow.com/questions/17238759/angular-module-minification-bug
+      },
       dist: {
         files: {
           '<%= yeoman.dist %>/scripts/scripts.js': [
