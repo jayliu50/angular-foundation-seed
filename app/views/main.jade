@@ -1,0 +1,31 @@
+.row
+    .large-6.columns
+        h1.text-center 'Allo, 'Allo!
+        p You now have
+        ul
+            li(ng-repeat='thing in awesomeThings') {{thing}}
+        p installed.
+        h3 Enjoy coding! - Yeoman
+    .large-6.columns
+        h2
+            em And here's the proof
+        .panel.text-center
+            h2 Font Awesome
+            p I can display lovely icons like this: 
+            p
+                i.fa.fa-magic.fa-5x
+        .panel.text-center
+            h2 Zurb Foundation
+            #myModal.reveal-modal(data-reveal='data-reveal')
+                h2 Awesome. I have it.
+                p.lead Your couch. It is mine.
+                p I'm a cool paragraph that lives inside of an even cooler modal. Wins
+                a.close-reveal-modal ×
+            a(href='#', data-reveal-id='myModal') Click Me For A Modal
+        .panel.text-center
+            h2 Compass
+            .compass-hover.panel.secondary
+                | And hover over me. My transition was built with compass
+        .panel.text-center
+            h2 Jade
+            p This template was written in Jade.

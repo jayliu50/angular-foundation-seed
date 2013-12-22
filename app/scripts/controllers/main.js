@@ -8,7 +8,8 @@ angular.module('myApp')
             'Zurb Foundation',
             'Compass',
             'AngularJS',
-            'Karma'
+            'Karma',
+            'Jade'
         ];
 
         $scope.$on('$viewContentLoaded', function () {

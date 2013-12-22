@@ -34,12 +34,17 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
       },
+      jade: {
+        files: ['<%= yeoman.app %>/**/{,*/}*.jade'],
+        tasks: ['jade:dist']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
           '<%= yeoman.app %>/**/{,*/}*.html',
+          '{.tmp,<%= yeoman.app %>}/views/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -237,6 +242,11 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           src: ['*.html', 'views/*.html'],
           dest: '<%= yeoman.dist %>'
+        },{
+          expand: true,
+          cwd: '.tmp',
+          src: ['*.html', 'views/*.html'],
+          dest: '<%= yeoman.dist %>'
         }]
       }
     },
@@ -263,6 +273,12 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      html: {
+        expand: true,
+        cwd: '.tmp/views',
+        dest: '<%= yeoman.dist %>/views/',
+        src: '{,*/}*.html'          
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -283,17 +299,22 @@ module.exports = function (grunt) {
       server: [
         'coffee:dist',
         'compass:server',
+        'jade:dist',
+        'copy:html',
         'copy:styles',
         'copy:fonts'
       ],
       test: [
         'coffee',
         'compass',
+        'copy:html',
         'copy:styles'
       ],
       dist: [
         'coffee',
+        'jade:dist',
         'compass:dist',
+        'copy:html',
         'copy:styles',
         'copy:fonts',
         'imagemin',
@@ -333,11 +354,28 @@ module.exports = function (grunt) {
           ]
         }
       }
-    }
+    },
+    jade: {
+      dist: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: '{,*/}*.jade',
+          dest: '.tmp',
+          ext: '.html'
+        }]
+      }
+    }  
   });
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
+      // error: jade files not serving.
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
