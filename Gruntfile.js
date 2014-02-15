@@ -44,9 +44,9 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/**/{,*/}*.html',
-          '{.tmp,<%= yeoman.app %>}/views/{,*/}*.html',
+          '{.tmp,<%= yeoman.app %>}/views/**/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+          '{.tmp,<%= yeoman.app %>}/scripts/**/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -185,7 +185,7 @@ module.exports = function (grunt) {
       }
     },
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         dirs: ['<%= yeoman.dist %>']
@@ -240,7 +240,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>',
-          src: ['*.html', 'views/*.html'],
+          src: ['*.html', 'views/**/*.html'],
           dest: '<%= yeoman.dist %>'
         },{
           expand: true,
@@ -348,6 +348,9 @@ module.exports = function (grunt) {
         mangle: false // Do not set to true. Does not work well with angular http://stackoverflow.com/questions/17238759/angular-module-minification-bug
       },
       dist: {
+                options: {
+                    beautify: false
+                },
         files: {
           '<%= yeoman.dist %>/scripts/scripts.js': [
             '<%= yeoman.dist %>/scripts/scripts.js'
