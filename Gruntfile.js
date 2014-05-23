@@ -312,7 +312,6 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'coffee',
-        'jade:dist',
                 'compass:dist',
                 'copy:html',
                 'copy:styles',
@@ -373,7 +372,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.app %>',
-          src: '{,*/}*.jade',
+                    src: '**/*.jade',
                     dest: '.tmp',
                     ext: '.html'
                 }]
@@ -407,6 +406,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
+        'jade:dist',
         'concurrent:dist',
         'autoprefixer',
         'concat',
